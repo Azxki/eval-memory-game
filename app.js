@@ -4,8 +4,11 @@ const col = 5;
 const row = 2;
 let randomSymbols;
 let fCard = [];
+let resultat = document.getElementById('resultat');
+let score = 0;
+let reload = document.getElementById('reload');
 
-const symbols = ['android', 'eco', 'favorite', 'grade', 'thumb_up'];
+const symbols = ['wifi', 'pin', 'dock', 'tablet', 'monitor'];
 
 const init = () => {
 
@@ -63,6 +66,7 @@ const cardClicked = (colIndex, rowIndex) => {
         grid[fCard[0].r][fCard[0].c].isVisible = false;
         grid[fCard[1].r][fCard[1].c].isVisible = false;
         fCard.splice(0, 2);
+        score++;
     }
 
     renderGrid();
@@ -84,7 +88,7 @@ const renderGrid = () => {
         }
     }
 
-    var divs = gridEl.querySelectorAll('.card');
+    let divs = gridEl.querySelectorAll('.card');
 
     [].forEach.call(divs, function(div) {
         div.remove();
@@ -92,8 +96,17 @@ const renderGrid = () => {
     cardEls.forEach((c) => gridEl.append(c));
     if (isWinning === true) {
         document.querySelector('h2').style.display = 'block';
+        resultat.style.display = "block";
+        resultat.innerHTML = "Vous avez eu faux : " + score + " fois";
+        document.querySelector('body').style.backgroundColor = 'black';
+        document.getElementById('grid').style.display = 'none';
+        document.querySelector('button').style.opacity = '1';
     }
 };
+
+reload.addEventListener('click', () => {
+    location.reload();
+})
 
 const createCard = ({ isVisible, isPaired, symbol }, colIndex, rowIndex) => {
     const cardEl = document.createElement('div');
