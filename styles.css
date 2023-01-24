@@ -5,6 +5,7 @@
     text-align: center
 }
 
+
 #grid {
     margin-top: 3%;
     grid-template-columns: repeat(5, 120px);
@@ -34,7 +35,8 @@
 }
 
 .card-paired {
-    background: red;
+    display: none;
+    opacity: 0;
 }
 
 .card .material-icons {
